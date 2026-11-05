@@ -451,7 +451,14 @@ body.slots .slot { display: block; }
 .aq-flow > i { font-style: normal; font: 700 22px var(--mono); color: var(--accent); }
 .aq-videos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s3); }
 .aq-videos video { width: 100%; border-radius: 6px; background: #fff; display: block; }
+.aq-motion { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: var(--s6); align-items: center; }
+.aq-motion-side { display: grid; gap: var(--s4); min-width: 0; }
+.aq-motion-side p { margin: 0; color: #d6cec7; line-height: 1.75; }
 .aq-gif img { width: 100%; height: auto; border-radius: 6px; background: #fff; display: block; }
+@media (max-width: 820px) {
+  .aq-motion { grid-template-columns: minmax(0, 1fr); }
+  .aq-gif { width: min(100%, 240px); justify-self: center; }
+}
 /* SKINFOOD proposal */
 .sf-film { width: 100%; aspect-ratio: 16/9; border-radius: 6px; background: #000; display: block; }
 .sf-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s3); }
@@ -1101,7 +1108,7 @@ const skinfoodHTML = () => `
       <figure class="sf-fig"><img src="img/sf-p32.jpg" alt="제안 단계 비디오 스토리보드 9개 장면" loading="lazy"><figcaption><b>Storyboard</b>제안 단계 스토리보드</figcaption></figure>
     </section>
     <section class="aq-sec">
-      <div class="aq-label"><b>04</b>Product &amp; Offline<span>제품에서 현장 경험까지</span></div>
+      <div class="aq-label"><b>04</b>Product &amp; Offline</div>
       <figure class="sf-fig"><img src="img/sf-sheet.jpg" alt="당근 세럼 제품 프레젠테이션 시트" loading="lazy"><figcaption><b>Product Sheet</b>제품 형태와 디테일 정리</figcaption></figure>
       <div class="sf-ooh">
         <figure class="sf-fig"><img src="img/sf-popup.jpg" alt="당근 일러스트를 입힌 이동식 트레일러 팝업" loading="lazy"><figcaption><b>Pop-up</b>이동식 팝업 트레일러</figcaption></figure>
@@ -1142,15 +1149,21 @@ const aquaHTML = () => `
     </section>
     <section class="aq-sec">
       <div class="aq-label"><b>03</b>3D · UV Motion<span>홀더가 닫히고 UV가 켜지기까지</span></div>
-      <div class="aq-flow">
+      <div class="aq-motion">
+        <div class="aq-gif">
+        <img src="img/aq-motion.gif" alt="AQUAPICK 3D 모델링 및 UV 모션" loading="lazy">
+      </div>
+        <div class="aq-motion-side">
+          <div class="aq-flow">
         <figure><img src="img/aq-start.jpg" alt="홀더가 올라간 시작 장면" loading="lazy"><figcaption class="mono">Start · Lifted</figcaption></figure>
         <i aria-hidden="true">→</i>
         <figure><img src="img/aq-end.jpg" alt="홀더가 닫힌 장면" loading="lazy"><figcaption class="mono">End · Seated</figcaption></figure>
         <i aria-hidden="true">→</i>
         <figure><img src="img/aq-uv.jpg" alt="UV 램프가 켜진 장면" loading="lazy"><figcaption class="mono">UV · On</figcaption></figure>
       </div>
-      <div class="aq-gif">
-        <img src="img/aq-motion.gif" alt="AQUAPICK 3D 모델링 및 UV 모션" loading="lazy">
+          <p>촬영과 도면으로 잡은 기준 위에 3D 모델을 만들고, 홀더가 닫히며 UV가 켜지는 장면까지 모션으로 완성했습니다.</p>
+          <a class="watch" href="https://brand.naver.com/aquapick/products/7912308419" target="_blank" rel="noopener">네이버 상세페이지 보기 ↗</a>
+        </div>
       </div>
     </section>
   </article>`;
