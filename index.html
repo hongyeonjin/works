@@ -452,6 +452,30 @@ body.slots .slot { display: block; }
 .aq-videos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s3); }
 .aq-videos video { width: 100%; border-radius: 6px; background: #fff; display: block; }
 .aq-gif img { width: 100%; height: auto; border-radius: 6px; background: #fff; display: block; }
+/* SKINFOOD proposal */
+.sf-film { width: 100%; aspect-ratio: 16/9; border-radius: 6px; background: #000; display: block; }
+.sf-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s3); }
+.sf-3 > div { padding: var(--s4); border: 1px solid var(--line); border-radius: 8px; display: grid; gap: var(--s2); align-content: start; }
+.sf-3 b { font: 700 12px var(--mono); color: var(--accent); letter-spacing: .04em; }
+.sf-3 strong { font-size: 16px; line-height: 1.45; }
+.sf-3 span { color: var(--mute); font-size: 13px; line-height: 1.6; }
+.sf-msg { display: grid; gap: var(--s2); padding: var(--s6) var(--s4); border-radius: 8px; background: rgba(255,255,255,.04); text-align: center; }
+.sf-msg small { color: var(--mute); font-size: 14px; }
+.sf-msg strong { font-family: var(--display); font-weight: 800; font-size: clamp(30px, 5vw, 60px); line-height: 1.15; color: var(--accent-2); }
+.sf-kv, .sf-frames, .sf-pages { display: grid; gap: var(--s3); }
+.sf-kv { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.sf-frames { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.sf-pages { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.aq figure.sf-fig { margin: 0; display: grid; gap: var(--s2); align-content: start; }
+.sf-fig img { width: 100%; height: auto; display: block; border-radius: 6px; background: #fff; }
+.sf-fig figcaption { font-size: 13px; color: #d6cec7; line-height: 1.5; }
+.sf-fig figcaption b { font: 700 12px var(--mono); color: var(--accent); margin-right: 4px; }
+.sf-ooh { display: grid; grid-template-columns: minmax(0, 2.4fr) minmax(0, 1fr); gap: var(--s3); align-items: start; }
+@media (max-width: 820px) {
+  .sf-3, .sf-kv, .sf-pages { grid-template-columns: minmax(0, 1fr); }
+  .sf-frames { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sf-ooh { grid-template-columns: minmax(0, 1fr); }
+}
 /* Olivebetter editorial spreads */
 .ed { display: grid; gap: var(--s8); }
 .ed-page { position: relative; background: #fff; color: #111; border-radius: 4px; padding: clamp(20px, 3.4vw, 48px); box-shadow: 0 30px 60px rgba(0,0,0,.35); overflow: hidden; }
@@ -760,7 +784,7 @@ const OLD = { "04":"stage","05":"stage","06":"stage","07":"stage",
   "11":"title","13":"title","14":"title","16":"title","15":"title","17":"title","10":"title",
   "08":"3d","09":"3d","24":"3d", "18":"campaign","20":"campaign","19":"product","21":"human" };
 const ORDER = ["04","05","06","07","ces","22","11","12","13","14","16","15","17","10","08","09","dim","24",
-  "gs","18","bhc","20","iherb","hancom","skin1004","primera","aquapick","olive","19","itsskin","teazen","drcos","drcos2","21"];
+  "gs","skinfood","18","bhc","20","iherb","hancom","skin1004","primera","aquapick","olive","19","itsskin","teazen","drcos","drcos2","21"];
 const SUBT = { "18": "Winter Campaign · AI 광고 엔딩 비주얼", "20": "AI Concept Film", "19": "AI Beauty / Viral Visuals" };
 const OLD_ROLES = { "18":["Concept","AI Image","AI Video","Edit"], "19":["AI Visual","AI Video","Motion"], "20":["Concept","AI Film"], "21":["AI Direction","Compositing"], "23":["Motion"] };
 for (let i = W.length - 1; i >= 0; i--) if (!OLD[W[i].id]) W.splice(i, 1);
@@ -783,6 +807,7 @@ const NEW = [
   { id: "gs", c: "campaign", t: "GS SHOP", s: "Chuseok Seasonal Promotion", co: "", d: "2026", f: "Key Visual", ai: true, ph: false, img: "img/gs-wide.jpg",
     roles: ["Proposal", "Key Visual Direction", "AI Image Production"],
     desc: "Led the key visual direction for a competitive agency proposal and developed AI-generated seasonal campaign imagery. 경쟁 비딩 제안에서 키비주얼 방향을 주도해 수주에 성공했고, 이후 추석 시즌 프로모션용 AI 캠페인 이미지를 제작했습니다." },
+  { id: "skinfood", c: "campaign", t: "SKINFOOD", s: "Rebranding & Carrot Serum Launch · Bidding Proposal", co: "", d: "2026.11", f: "Proposal", ai: true, ph: false, img: "img/p-skinfood.jpg", roles: ["Campaign Planning", "Key Visual", "AI Film"] },
   { id: "bhc", c: "campaign", t: "BHC", s: "콰삭킹 AI Commercial · AI 숏폼 광고", co: "", d: "—", f: "AI Commercial", ai: true, roles: ["AI Commercial", "Short-form"] },
   { id: "iherb", c: "campaign", t: "iHerb", s: "AI Competition", co: "", d: "2026.07", f: "9:16", ai: true, roles: ["AI Concept", "AI Video"] },
   { id: "skin1004", c: "product", t: "SKIN1004", s: "AI Product Film", co: "Personal", d: "2026.09", f: "9:16", ai: true, roles: ["AI Video"] },
@@ -868,7 +893,7 @@ $("#track").innerHTML = strip + strip;
 const SLOT = { vital: "01", itsskin: "02", teazen: "03", gs: "04",
   "04": "05", "05": "06", "06": "07", "07": "08", "11": "09", "13": "10", "14": "11", "16": "12", "15": "13", "17": "14", "10": "15",
   "08": "16", "09": "17", dim: "18", "24": "19", "18": "20", bhc: "21", "20": "22", iherb: "23", hancom: "24",
-  skin1004: "25", primera: "26", aquapick: "27", olive: "28", "19": "29", chasing: "30", kmong: "31", drcos: "32", drcos2: "33", "21": "34", ces: "35" };
+  skin1004: "25", primera: "26", aquapick: "27", olive: "28", "19": "29", chasing: "30", kmong: "31", drcos: "32", drcos2: "33", "21": "34", ces: "35", skinfood: "36" };
 const tag = c => `<i class="slot">${c}</i>`;
 const card = w => `
   <button class="card" type="button" data-id="${w.id}">
@@ -1032,6 +1057,67 @@ const detail = w => `
     </div>
   </article>`;
 
+// SKINFOOD: bidding proposal, insight → key message → key visual · AI film · offline
+const SF_FRAMES = [["1","빈 공병들과 카피 ‘수분 세럼에서,’"],["2","마지막 물방울과 함께 ‘물을 뺐다’"],["3","물방울이 닿으며 일러스트로 전환"],["4","당근을 눌러 당근수를 짜냄"],["5","손그림 레시피북"],["6","공병을 채우는 당근수"],["7","완성된 세럼과 핵심 카피"],["8","소비자의 피부로 마무리"]];
+const SF_PAGES = [["28","Key Message"],["31","영상 크리에이티브 방향"],["38","Tease · Reveal · Convert"],["52","실물 당근으로 병을 채우는 체험단 미션"],["77","이동식 팝업 ‘Recipe Kitchen’"],["81","당근패드 공병 교환 자판기"]];
+const skinfoodHTML = () => `
+  <article class="aq sf">
+    <div class="sw"><video class="sf-film" src="img/sf-film.mp4" poster="img/sf-poster.jpg" controls playsinline preload="none" aria-label="SKINFOOD 당근세럼 AI 필름"></video>${tag("36")}</div>
+    <div class="aq-intro">
+      <div class="aq-text">
+        <div class="mono">2026.11 · Bidding Proposal</div>
+        <h4>SKINFOOD</h4>
+        <div class="case-sub">Campaign Planning · Key Visual · AI Film</div>
+        <p>스킨푸드 2027 리브랜딩과 당근세럼 론칭 캠페인 비딩에 참여해 기획, 키비주얼, AI 영상을 만들었습니다. 수분세럼 시장이 모두 성분으로 말하는 가운데, 정제수 대신 당근수를 쓴 제품의 다름을 ‘물 대신, 당근’이라는 한 문장으로 정리하고 영상과 비주얼, 오프라인 접점까지 같은 메시지로 이어지도록 제안했습니다.</p>
+        <div class="roles big"><span>Campaign Planning</span><span>Key Visual</span><span>AI Film</span></div>
+      </div>
+      <ol class="aq-steps">
+        <li><b>01</b><div><strong>Insight</strong><span>성분 경쟁으로 차이가 사라진 수분세럼 시장을 분석</span></div></li>
+        <li><b>02</b><div><strong>Key Message</strong><span>성분표 맨 끝의 다름을 맨 앞에서 말할 한 문장으로 정리</span></div></li>
+        <li><b>03</b><div><strong>Creative</strong><span>키비주얼 3종과 AI 필름, 팝업 · 자판기 비주얼로 구현</span></div></li>
+      </ol>
+    </div>
+    <section class="aq-sec">
+      <div class="aq-label"><b>01</b>Insight<span>세 가지 발견에서 나온 한 문장</span></div>
+      <div class="sf-3">
+        <div><b>CONSUMER</b><strong>속건조 때문에 찾고, 편안해서 계속 쓴다</strong><span>수분세럼에 바라는 것은 속을 채우는 수분과 부담 없는 편안함입니다.</span></div>
+        <div><b>MARKET</b><strong>성분을 강조할수록 차이가 사라진다</strong><span>모두가 몇 중, 몇 퍼센트로 말하는 시장에서 성분은 더 이상 차별점이 되지 못합니다.</span></div>
+        <div><b>SKINFOOD</b><strong>처음부터 푸드로 말해 온 브랜드</strong><span>소비자가 ‘당근패드’로 부르며 쌓아 온 믿음이 이미 있습니다.</span></div>
+      </div>
+      <div class="sf-msg"><small>수분세럼에서, 물을 뺐다</small><strong>물 대신, 당근</strong><small>당근으로 꽉 채운, 촉촉진정 레시피</small></div>
+    </section>
+    <section class="aq-sec">
+      <div class="aq-label"><b>02</b>Key Visual<span>궁금증에서 레시피까지</span></div>
+      <div class="sf-kv">
+        <figure class="sf-fig"><img src="img/sf-kv1.jpg" alt="물을 빼고 무엇을 채웠는지 묻는 티징 키비주얼" loading="lazy"><figcaption><b>Tease</b>물을 빼고, 무엇을 채웠을까</figcaption></figure>
+        <figure class="sf-fig"><img src="img/sf-kv3.jpg" alt="Filled with Carrot. Not Water. 키비주얼" loading="lazy"><figcaption><b>Reveal</b>Filled with Carrot. Not Water.</figcaption></figure>
+        <figure class="sf-fig"><img src="img/sf-kv2.jpg" alt="당근세럼 레시피 노트 콘셉트 키비주얼" loading="lazy"><figcaption><b>Recipe</b>레시피 노트로 풀어낸 제품 설명</figcaption></figure>
+      </div>
+    </section>
+    <section class="aq-sec">
+      <div class="aq-label"><b>03</b>AI Film<span>설명하지 않고 보이게</span></div>
+      <p class="sf-note" style="margin:0;max-width:44em;color:#d6cec7;line-height:1.75">물이 사라지는 장면으로 시작해 따뜻한 손그림 레시피를 거쳐, 브랜드가 아닌 소비자의 피부로 끝나는 구성입니다. 사실을 보여 주는 실사 톤과 스킨푸드다움을 전하는 일러스트 톤을 오가도록 설계했습니다.</p>
+      <div class="sf-frames">${SF_FRAMES.map(([n, t]) => `<figure class="sf-fig"><img src="img/sf-f${n}.jpg" alt="${t}" loading="lazy"><figcaption><b>0${n}</b>${t}</figcaption></figure>`).join("")}</div>
+      <figure class="sf-fig"><img src="img/sf-p32.jpg" alt="제안 단계 비디오 스토리보드 9개 장면" loading="lazy"><figcaption><b>Storyboard</b>제안 단계 스토리보드</figcaption></figure>
+    </section>
+    <section class="aq-sec">
+      <div class="aq-label"><b>04</b>Product &amp; Offline<span>제품에서 현장 경험까지</span></div>
+      <figure class="sf-fig"><img src="img/sf-sheet.jpg" alt="당근 세럼 제품 프레젠테이션 시트" loading="lazy"><figcaption><b>Product Sheet</b>제품 형태와 디테일 정리</figcaption></figure>
+      <div class="sf-ooh">
+        <figure class="sf-fig"><img src="img/sf-popup.jpg" alt="당근 일러스트를 입힌 이동식 트레일러 팝업" loading="lazy"><figcaption><b>Pop-up</b>이동식 팝업 트레일러</figcaption></figure>
+        <figure class="sf-fig"><img src="img/sf-vending.jpg" alt="Carrot Rewards 자판기" loading="lazy"><figcaption><b>Vending</b>Carrot Rewards 자판기</figcaption></figure>
+      </div>
+    </section>
+    <section class="aq-sec">
+      <div class="aq-label"><b>05</b>Campaign Plan<span>궁금하게 하고, 답을 보여 주고, 사게 만든다</span></div>
+      <div class="sf-3">
+        <div><b>TEASE · 출시 전</b><strong>“물을 뺐다고?”</strong><span>티징 영상 확산과 사전 체험단으로 기대감과 후기를 먼저 확보합니다.</span></div>
+        <div><b>REVEAL · 출시</b><strong>“물 대신, 당근”</strong><span>제품 메인 영상과 인플루언서, 이동식 팝업으로 인지를 넓힙니다.</span></div>
+        <div><b>CONVERT · 올영 프로모션</b><strong>“써 보니, 촉촉진정”</strong><span>후기 확산과 마켓, 공병 교환 자판기로 구매까지 연결합니다.</span></div>
+      </div>
+      <div class="sf-pages">${SF_PAGES.map(([p, t]) => `<figure class="sf-fig"><img src="img/sf-p${p}.jpg" alt="제안서 페이지: ${t}" loading="lazy"><figcaption>${t}</figcaption></figure>`).join("")}</div>
+    </section>
+  </article>`;
 // AQUAPICK: shoot → blueprint of hidden parts → 3D UV motion
 const aquaHTML = () => `
   <article class="aq">
@@ -1148,7 +1234,7 @@ const metaHTML = t => {
   if (p.length > 1 && p[p.length - 1].length <= 8) p.splice(-2, 2, p[p.length - 2] + " / " + p[p.length - 1]);
   return p.map(x => `<span class="nb">${x}</span>`).join(" / ");
 };
-const view = id => IGP[id] ? caseHTML(id) : id === "gs" ? gsFeature : id === "aquapick" ? aquaHTML() : id === "primera" ? primeraHTML() : id === "olive" ? oliveHTML() : detail(byId[id]);
+const view = id => IGP[id] ? caseHTML(id) : id === "gs" ? gsFeature : id === "skinfood" ? skinfoodHTML() : id === "aquapick" ? aquaHTML() : id === "primera" ? primeraHTML() : id === "olive" ? oliveHTML() : detail(byId[id]);
 
 $("#chapters").innerHTML = CH.map(ch => `
   <section class="chapter" id="${ch.id}">
