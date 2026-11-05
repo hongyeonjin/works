@@ -451,6 +451,7 @@ body.slots .slot { display: block; }
 .aq-flow > i { font-style: normal; font: 700 22px var(--mono); color: var(--accent); }
 .aq-videos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s3); }
 .aq-videos video { width: 100%; border-radius: 6px; background: #fff; display: block; }
+.aq-gif img { width: 100%; height: auto; border-radius: 6px; background: #fff; display: block; }
 /* Olivebetter editorial spreads */
 .ed { display: grid; gap: var(--s8); }
 .ed-page { position: relative; background: #fff; color: #111; border-radius: 4px; padding: clamp(20px, 3.4vw, 48px); box-shadow: 0 30px 60px rgba(0,0,0,.35); overflow: hidden; }
@@ -1062,9 +1063,8 @@ const aquaHTML = () => `
         <i aria-hidden="true">→</i>
         <figure><img src="img/aq-uv.jpg" alt="UV 램프가 켜진 장면" loading="lazy"><figcaption class="mono">UV · On</figcaption></figure>
       </div>
-      <div class="aq-videos">
-        <video src="img/aq-motion-1.mp4" muted loop playsinline autoplay preload="metadata" aria-label="AQUAPICK UV 모션 영상 1"></video>
-        <video src="img/aq-motion-2.mp4" muted loop playsinline autoplay preload="metadata" aria-label="AQUAPICK UV 모션 영상 2"></video>
+      <div class="aq-gif">
+        <img src="img/aq-motion.gif" alt="AQUAPICK 3D 모델링 및 UV 모션" loading="lazy">
       </div>
     </section>
   </article>`;
