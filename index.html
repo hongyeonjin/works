@@ -476,14 +476,15 @@ body.slots .slot { display: block; }
 .tzs-sec > p { margin: 0; color: #d6cec7; max-width: 44em; line-height: 1.75; }
 .tzs-links { display: flex; flex-wrap: wrap; gap: 8px; }
 .tzs-links a { font-size: 12px; color: var(--accent); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; }
-.tzs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: var(--s3); align-items: start; }
+.tzs-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--s3); align-items: start; }
 .tzs-grid figure { margin: 0; display: grid; gap: 6px; min-width: 0; }
-.tzs-grid video { width: 100%; height: auto; border-radius: 6px; background: #000; display: block; object-fit: cover; }
+.tzs-grid video { width: 100%; height: auto; aspect-ratio: 9/16; border-radius: 6px; background: rgba(0,0,0,.35); display: block; object-fit: contain; }
 .tzs-grid figcaption { font-size: 13px; color: #d6cec7; }
 @media (max-width: 820px) {
   .tzs-index { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .tzs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+@media (max-width: 1024px) { .tzs-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .tzs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 /* SKINFOOD proposal */
 .sf-film { width: 100%; aspect-ratio: 16/9; border-radius: 6px; background: #000; display: block; }
 .sf-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s3); }
@@ -1043,7 +1044,7 @@ const tzSeries = () => `
     ${TZS.map(s => `<div class="tzs-sec" id="tzs-${s.k}">
       <div class="aq-label"><b>${s.no}</b>${esc(s.t)}<span>${s.d} · ${s.n}</span></div>
       <p>${esc(s.desc)}</p>${s.links.length ? `<div class="tzs-links">${s.links.map(([t, u]) => `<a href="${u}" target="_blank" rel="noopener">${esc(t)} ↗</a>`).join("")}</div>` : ""}
-      <div class="tzs-grid">${s.items.map(([k, t, r]) => `<figure><video src="img/tz-${k}.mp4" poster="img/tz-${k}.jpg" controls playsinline preload="none" style="aspect-ratio:${r}" aria-label="${esc(t)}"></video><figcaption>${esc(t)}</figcaption></figure>`).join("")}</div>
+      <div class="tzs-grid">${s.items.map(([k, t, r]) => `<figure><video src="img/tz-${k}.mp4" poster="img/tz-${k}.jpg" controls playsinline preload="none" aria-label="${esc(t)}"></video><figcaption>${esc(t)}</figcaption></figure>`).join("")}</div>
     </div>`).join("")}
   </section>`;
 document.addEventListener("click", e => {
